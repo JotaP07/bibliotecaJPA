@@ -20,7 +20,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank(message = "O nome não pode ser nulo.")
     @Size(min = 3, message = "O nome deve conter no minímo 3 caracteres.")

@@ -20,7 +20,7 @@ public class Autor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank(message = "O nome do autor não deve ser nulo.")
     @Size(min = 2,message = " O nome deve conter no mínimo 2 caracteres ")

@@ -23,7 +23,7 @@ public class Editora {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Size(min = 3, message = "O nome deve conter mais de 3 caracteres.")
