@@ -39,7 +39,7 @@ public class Funcionario {
     private Integer idade;
 
     @NotNull(message = "O CPF não deve ser nulo.")
-    @CPF(message = "CPF Inválida. O fomato deve ser 123.456.789.01")
+    @CPF(message = "CPF Inválida. O fomato deve ser 123.456.789.09")
     private String cpf;
 
     @NotNull(message = "O CEP não deve ser nulo.")
@@ -52,6 +52,9 @@ public class Funcionario {
 
     @Email(message = "E-mail Inválido. O fomato deve ser exemplo@exemplo.com.")
     private String email;
+
+    @NotBlank(message = "O endereço não pode ser nulo ou vazio.")
+    private String endereco;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("funcionario")

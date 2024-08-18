@@ -29,8 +29,8 @@ public class VendaController {
     @PostMapping("/saveAll")
     public ResponseEntity<String> saveAll(@RequestBody List<Venda> vendas) {
         try {
-            this.vendaService.saveAll(vendas);
-            return new ResponseEntity<>("Vendas realizadas com sucesso!", HttpStatus.OK);
+            String mensagem = this.vendaService.saveAll(vendas);
+            return new ResponseEntity<>(mensagem, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
