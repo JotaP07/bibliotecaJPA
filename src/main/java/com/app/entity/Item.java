@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,12 +32,12 @@ public class Item {
     @Size(min = 3, max = 100, message = "O título deve ter entre 3 e 100 caracteres.")
     private String titulo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "genero_id")
     @JsonIgnoreProperties("itens")
     private Genero genero;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "item_autor",
             joinColumns = @JoinColumn(name = "item_id"),
@@ -45,7 +46,7 @@ public class Item {
     @JsonIgnoreProperties("itens")
     private List<Autor> autores;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "editora_id")
     @JsonIgnoreProperties("itens")
     private Editora editora;
@@ -53,4 +54,12 @@ public class Item {
     @NotBlank(message = "O ano de publicação não pode ser nulo ou vazio.")
     @Size(min = 3, max = 4, message = "O ano de publicação deve ter exatamente 4 dígitos.")
     private String anoPublicacao;
+
+    @NotNull(message = "O ano de publicação não pode ser nulo ou vazio.")
+    @Positive(message = "O preço do item não deve ser negativo")
+    private Double preco;
+
+    @ManyToMany(mappedBy = "itens", cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties("itens")
+    private List<Venda> vendas;
 }

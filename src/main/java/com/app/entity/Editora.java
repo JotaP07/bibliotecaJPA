@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class Editora {
     @NotBlank(message = "O CNPJ não dev ser nulo.")
     private  String cnpj;
 
-    @OneToMany(mappedBy = "editora", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "editora", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("editora")
     private List<Item> itens;
 }

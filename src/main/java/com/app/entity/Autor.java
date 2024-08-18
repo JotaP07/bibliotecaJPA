@@ -28,7 +28,7 @@ public class Autor {
 
     private String descricao;
 
-    @ManyToMany(mappedBy = "autores", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "autores", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("autores")
     private List<Item> itens;
 }

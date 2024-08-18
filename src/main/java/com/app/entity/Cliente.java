@@ -1,15 +1,15 @@
 package com.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,5 +44,9 @@ public class Cliente {
 
     @Email(message = "E-mail Inválido. O fomato deve ser exemplo@exemplo.com.")
     private String email;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties("cliente")
+    private List<Venda> vendas;
 
 }

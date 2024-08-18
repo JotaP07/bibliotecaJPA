@@ -23,7 +23,7 @@ public class Genero {
     @NotNull(message = "O genêro deve conter um nome.")
     private String nome;
 
-    @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "genero", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("genero")
     private List<Item> itens;
 }
